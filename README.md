@@ -38,3 +38,17 @@ plugins:
       - `@mention` can currently include the underscore (`_`) along with alphanumeric characters and hyphen (`-`)
       - `@mention` will not be rendered within `<script></script>`
       - configuration for emoji assets-path mirror that of `jekyll-mentions`: the value can be both a string or a dictionary
+
+### Build times comparison
+
+rvm   | jmentions+jemoji | *jmentioji*
+:---: | :----: | :------:
+2.2.9 | 15.482 | *13.671*
+2.3.6 | 13.798 | *11.988*
+2.4.3 | 14.225 | *12.848*
+2.5.0 | 14.560 | *12.771*
+
+(built using `jekyll:master@c7f006`)
+
+*Disclaimer: The no.s above are averages of 3 restarted jobs on two separate Travis CI build-commits and therefore cannot be considered as
+solid evidence. However, tests run locally do show an improvement of approx. 2s with `jekyll-mentioji` over the combo.*
