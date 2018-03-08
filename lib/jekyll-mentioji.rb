@@ -5,7 +5,7 @@ require "nokogiri"
 
 module Jekyll
   class Mentioji
-    MENTIONPATTERNS = %r~(?:^|\W)@((?>[\w][\w_-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w_.]|$)~i
+    MENTIONPATTERNS = %r~(?:^|\W)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i
 
     IGNORE_MENTION_PARENTS = %w(pre code a script style).freeze
     IGNORE_EMOJI_PARENTS = %w(pre code tt).freeze
