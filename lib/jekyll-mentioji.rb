@@ -60,7 +60,7 @@ module Jekyll
         subject = config[key]
         case subject
         when nil, NilClass
-          default_mention_base
+          default_value
         when String
           subject.to_s
         when Hash
