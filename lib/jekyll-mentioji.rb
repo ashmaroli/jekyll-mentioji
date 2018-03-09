@@ -97,6 +97,7 @@ module Jekyll
       end
 
       def mention_renderer(node, text)
+        return text unless text.include?("@")
         return text if has_ancestor?(node, IGNORE_MENTION_PARENTS)
         text.gsub(MENTIONPATTERNS) do |_match|
           mention_markup(Regexp.last_match(1))
@@ -104,6 +105,7 @@ module Jekyll
       end
 
       def emoji_renderer(node, text)
+        return text unless text.include?(":")
         return text if has_ancestor?(node, IGNORE_EMOJI_PARENTS)
         text.gsub(emoji_pattern) do |_match|
           emoji_markup(Regexp.last_match(1))
