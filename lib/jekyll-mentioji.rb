@@ -17,10 +17,10 @@ module Jekyll
         if doc.output.include?("<body")
           parsed_doc    = Nokogiri::HTML::Document.parse(doc.output)
           body          = parsed_doc.at_css("body")
-          body.children = process(body).to_s
+          body.children = process(body).to_html
           doc.output    = parsed_doc.to_html
         else
-          doc.output = process(Nokogiri::HTML::DocumentFragment.parse(doc.output)).to_s
+          doc.output = process(Nokogiri::HTML::DocumentFragment.parse(doc.output)).to_html
         end
       end
 
@@ -32,9 +32,9 @@ module Jekyll
       private
 
       def process(parsed_body)
-        return parsed_body unless parsed_body.to_html =~ prelim_check_regex
+        return parsed_body unless parsed_body.text =~ prelim_check_regex
         parsed_body.search(".//text()").each do |node|
-          content = node.to_html
+          content = node.text
           next if !content.include?("@") && !content.include?(":")
           node.replace(
             mention_renderer(
