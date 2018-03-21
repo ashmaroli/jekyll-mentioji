@@ -5,23 +5,23 @@ require "nokogiri"
 
 module Jekyll
   class Mentioji
-    MENTIONPATTERNS = %r~(?:^|\W)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i
+    MENTIONPATTERNS = %r~(?:^|\B)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i
+
+    OPENING_BODY_TAG_REGEX = %r!<body(.*)>\s*!
 
     IGNORE_MENTION_PARENTS = %w(pre code a script style).freeze
     IGNORE_EMOJI_PARENTS = %w(pre code tt).freeze
 
     class << self
       def transform(doc)
-        return unless doc.output.include?("@") || doc.output.include?(":")
+        content = doc.output
+        return unless content.include?("@") || content.include?(":")
         setup_transformer(doc.site.config)
-        if doc.output.include?("<body")
-          parsed_doc    = Nokogiri::HTML::Document.parse(doc.output)
-          body          = parsed_doc.at_css("body")
-          body.children = process(body).to_html
-          doc.output    = parsed_doc.to_html
-        else
-          doc.output = process(Nokogiri::HTML::DocumentFragment.parse(doc.output)).to_html
-        end
+        doc.output = if content.include?("<body")
+                       process_html_body(content)
+                     else
+                       process(content)
+                     end
       end
 
       def transformable?(doc)
@@ -31,8 +31,16 @@ module Jekyll
 
       private
 
-      def process(parsed_body)
-        return parsed_body unless parsed_body.text =~ prelim_check_regex
+      def process_html_body(content)
+        head, opener, tail  = content.partition(OPENING_BODY_TAG_REGEX)
+        body_content, *rest = tail.partition("</body>")
+
+        String.new(head) << opener << process(body_content) << rest.join
+      end
+
+      def process(body_content)
+        return body_content unless body_content =~ prelim_check_regex
+        parsed_body = Nokogiri::HTML::DocumentFragment.parse(body_content)
         parsed_body.search(".//text()").each do |node|
           content = node.text
           next if !content.include?("@") && !content.include?(":")
@@ -42,7 +50,7 @@ module Jekyll
             )
           )
         end
-        parsed_body
+        parsed_body.to_html
       end
 
       def setup_transformer(config)
