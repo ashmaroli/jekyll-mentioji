@@ -17,5 +17,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "gemoji", "~> 3.0"
   s.add_runtime_dependency "jekyll", "~> 3.5"
   s.add_runtime_dependency "nokogiri", "~> 1.4"
+
+  s.add_development_dependency "cucumber", "~> 3.0"
+  s.add_development_dependency "rspec", "~> 3.0"
   s.add_development_dependency "rubocop", "~> 0.51.0"
 end
