@@ -58,4 +58,4 @@ Feature: Emojis
     Then I should get a zero exit status
     And the "_site" directory should exist
     And I should not see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
-    But I should see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="/assets/images/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
+    But I should see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="/assets/images/emoji/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
