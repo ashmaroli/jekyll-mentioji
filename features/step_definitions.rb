@@ -26,6 +26,11 @@ end
 
 Given("I have a fixture site") do
   FileUtils.cp_r("#{FIXT_DIR}/.", TEST_DIR)
+  return unless ENV["PLUGINS"]
+
+  config = SafeYAML.load_file(DEFAULT_CONFIG_FILE)
+  config["plugins"] = ENV["PLUGINS"].split(":")
+  File.write(DEFAULT_CONFIG_FILE, YAML.dump(config))
 end
 
 # -

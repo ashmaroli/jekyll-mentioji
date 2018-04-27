@@ -1,0 +1,20 @@
+language: ruby
+sudo: false
+cache: bundler
+
+before_install:
+  - gem update --system
+  - gem install bundler
+
+rvm:
+  - 2.5.1
+  - 2.4.4
+  - 2.3.7
+
+env:
+  - PLUGINS=jekyll-mentioji
+  - PLUGINS=jekyll-mentions:jemoji
+
+script:
+ - bundle exec cucumber
+ - bundle exec rubocop
