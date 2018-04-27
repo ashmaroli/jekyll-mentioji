@@ -53,6 +53,7 @@ module Jekyll
         parsed_body.to_html
       end
 
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       def setup_transformer(config)
         @transconfig ||= {
           "mention_base" => compute_base(
@@ -63,6 +64,7 @@ module Jekyll
           ),
         }
       end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
 
       def compute_base(config, key, subkey, default_value)
         subject = config[key]

@@ -36,8 +36,8 @@ Given("I have a rendered collection named {string}") do |label|
   config["collections"] ||= {}
   collections_config = config["collections"].merge({
     label => {
-      "output" => true
-    }
+      "output" => true,
+    },
   })
   config["collections"] = collections_config
   File.write(DEFAULT_CONFIG_FILE, YAML.dump(config))
@@ -51,8 +51,8 @@ Given("I have an unrendered collection named {string}") do |label|
   config["collections"] ||= {}
   collections_config = config["collections"].merge({
     label => {
-      "output" => false
-    }
+      "output" => false,
+    },
   })
   config["collections"] = collections_config
   File.write(DEFAULT_CONFIG_FILE, YAML.dump(config))
