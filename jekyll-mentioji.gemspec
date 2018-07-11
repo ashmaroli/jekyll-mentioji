@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   s.files         = ["lib/jekyll-mentioji.rb"]
   s.license       = "MIT"
 
+  s.required_ruby_version = ">= 2.3.0"
+
   s.add_runtime_dependency "gemoji", "~> 3.0"
   s.add_runtime_dependency "jekyll", "~> 3.5"
   s.add_runtime_dependency "nokogiri", "~> 1.4"
@@ -22,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "jekyll-mentions", "~> 1.0"
   s.add_development_dependency "jemoji", "~> 0.9"
   s.add_development_dependency "rspec", "~> 3.0"
-  s.add_development_dependency "rubocop", "~> 0.55.0"
+  s.add_development_dependency "rubocop", "~> 0.57.0"
 end
