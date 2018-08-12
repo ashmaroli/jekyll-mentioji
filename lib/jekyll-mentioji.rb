@@ -7,7 +7,7 @@ module Jekyll
   class Mentioji
     MENTIONPATTERNS = %r~(?:^|\B)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i
 
-    OPENING_BODY_TAG_REGEX = %r!<body(.*)>\s*!
+    OPENING_BODY_TAG_REGEX = %r!<body(.*?)>\s*!
 
     IGNORE_MENTION_PARENTS = %w(pre code a script style).freeze
     IGNORE_EMOJI_PARENTS = %w(pre code tt).freeze
