@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("lib", __dir__)
-require "jekyll-mentioji/version"
-
 Gem::Specification.new do |s|
-  s.name          = "jekyll-mentioji"
-  s.version       = JekyllMentioji::VERSION
-  s.authors       = ["Ashwin Maroli"]
-  s.email         = ["ashmaroli@gmail.com"]
-  s.homepage      = "https://github.com/ashmaroli/jekyll-mentioji"
-  s.summary       = "Faster version of the 'Jekyll::Mentions + Jekyll::Emoji' combo"
+  s.name        = "jekyll-mentioji"
+  s.version     = "0.1.0"
+  s.authors     = ["Ashwin Maroli"]
+  s.email       = ["ashmaroli@gmail.com"]
+  s.homepage    = "https://github.com/ashmaroli/jekyll-mentioji"
+  s.summary     = "Faster version of the 'Jekyll::Mentions + Jekyll::Emoji' combo"
+  s.description = "Improve build times for sites using both 'jekyll-mentions and 'jemoji' plugins"
 
-  s.files         = ["lib/jekyll-mentioji.rb"]
-  s.license       = "MIT"
+  all_files     = `git ls-files -z`.split("\x0")
+  s.files       = all_files.select { |f| f.match(%r!^(lib|LICENSE|README\.md)!) }
+  s.license     = "MIT"
 
   s.required_ruby_version = ">= 2.3.0"
 

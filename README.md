@@ -1,7 +1,9 @@
-If your site uses both [`jekyll-mentions`](https://github.com/jekyll/jekyll-mentions) and [`jemoji`](https://github.com/jekyll/jemoji), then
-using `jekyll-mentioji` *instead* is going to improve your build times.
+# Jekyll Mentioji
 
-Internally, this plugin combines the code and logic behind the above two plugins and adapts the associated code for
+If your site uses both [`jekyll-mentions`](https://github.com/jekyll/jekyll-mentions) and [`jemoji`](https://github.com/jekyll/jemoji), then
+using `jekyll-mentioji` *instead*, is going to improve your build times.
+
+Internally, this plugin combines the code & logic behind the above two plugins and adapts the associated code in
 [`html-pipeline`](https://github.com/jch/html-pipeline), which the above two plugins wrap around, to emerge as *the faster implementation*
 in comparison to using the two plugins together in a site.
 
@@ -15,7 +17,7 @@ Replace the two plugins in your `Gemfile` and/or `_config.yml` with this plugin:
 group :jekyll_plugins do
 -   gem "jekyll-mentions"
 -   gem "jemoji"
-+   gem "jekyll-mentioji", :git => "https://github.com/ashmaroli/jekyll-mentioji.git", :branch => "master"
++   gem "jekyll-mentioji"
 end
 ```
 ```sh

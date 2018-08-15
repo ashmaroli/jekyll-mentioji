@@ -13,8 +13,6 @@ rvm:
 
 env:
   - PLUGINS=jekyll-mentioji
-  - PLUGINS=jekyll-mentions:jemoji
 
 script:
  - bundle exec cucumber
- - bundle exec rubocop
