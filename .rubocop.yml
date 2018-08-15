@@ -1,8 +1,14 @@
+require: rubocop-jekyll
 inherit_gem:
-  jekyll: .rubocop.yml
+  rubocop-jekyll: .rubocop.yml
 
 AllCops:
   TargetRubyVersion: 2.3
+  Include:
+    - Gemfile
+    - jekyll-mentioji.gemspec
+    - lib/**/*.rb
+    - features/**/*.rb
   Exclude:
     - benchmark/**/*
     - script/**/*

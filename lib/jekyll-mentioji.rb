@@ -76,8 +76,7 @@ module Jekyll
         when Hash
           subject.fetch(subkey, default_value)
         else
-          raise TypeError,
-            "Your #{key} config has to either be a string or a hash. It's a " \
+          raise TypeError, "Your #{key} config has to either be a string or a hash. It's a " \
             "kind of #{subject.class} right now."
         end
       end

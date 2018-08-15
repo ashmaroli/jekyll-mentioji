@@ -40,11 +40,11 @@ Given("I have a rendered collection named {string}") do |label|
   FileUtils.mkdir_p(TEST_DIR.join("_#{label}"))
   config = SafeYAML.load_file(DEFAULT_CONFIG_FILE)
   config["collections"] ||= {}
-  collections_config = config["collections"].merge({
+  collections_config = config["collections"].merge(
     label => {
       "output" => true,
-    },
-  })
+    }
+  )
   config["collections"] = collections_config
   File.write(DEFAULT_CONFIG_FILE, YAML.dump(config))
 end
@@ -55,11 +55,11 @@ Given("I have an unrendered collection named {string}") do |label|
   FileUtils.mkdir_p(TEST_DIR.join("_#{label}"))
   config = SafeYAML.load_file(DEFAULT_CONFIG_FILE)
   config["collections"] ||= {}
-  collections_config = config["collections"].merge({
+  collections_config = config["collections"].merge(
     label => {
       "output" => false,
-    },
-  })
+    }
+  )
   config["collections"] = collections_config
   File.write(DEFAULT_CONFIG_FILE, YAML.dump(config))
 end
@@ -77,9 +77,9 @@ end
 
 Given(%r!I have a (document|page) at "(.*)" with content:!) do |type, path, text|
   content = if type == "page"
-              String.new("---\n---\n\n")
+              +"---\n---\n\n"
             else
-              String.new("---\nlayout: default\n---\n\n")
+              +"---\nlayout: default\n---\n\n"
             end
   content << text
   File.open(TEST_DIR.join(path), "wb") { |file| file.puts content }

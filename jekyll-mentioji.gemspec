@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "jekyll-mentions", "~> 1.0"
   s.add_development_dependency "jemoji", "~> 0.9"
   s.add_development_dependency "rspec", "~> 3.0"
-  s.add_development_dependency "rubocop", "~> 0.57.0"
+  s.add_development_dependency "rubocop-jekyll", "~> 0.1"
 end
