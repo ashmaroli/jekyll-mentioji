@@ -154,13 +154,11 @@ module Jekyll
       end
 
       def emoji_names
-        ::Emoji.all.map(&:aliases).flatten.sort
+        ::Emoji.all.flat_map(&:aliases).sort!.map! { |name| Regexp.escape(name) }
       end
 
       def emoji_pattern
-        @emoji_pattern ||= %r!:(
-          #{emoji_names.map { |name| Regexp.escape(name) }.join('|')}
-        ):!x
+        @emoji_pattern ||= %r!:(#{emoji_names.join('|')}):!
       end
 
       def prelim_check_regex
