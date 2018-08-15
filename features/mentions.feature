@@ -38,8 +38,8 @@ Feature: Mentions
     Then I should get a zero exit status
     And the "_site" directory should exist
     And I should see '<p>test <a href="https://github.com/TestUser" class="user-mention">@TestUser</a> test</p>' in "_site/docs/text-n-code.html"
-    But I should not see '<a href="https://github.com/codeUser" class="user-mention">@TestUser</a>' in "_site/docs/text-n-code.html"
-    And I should not see '<a href="https://github.com/emailserver" class="user-mention">@TestUser</a>' in "_site/docs/text-n-code.html"
+    But I should not see '<a href="https://github.com/codeUser" class="user-mention">@codeUser</a>' in "_site/docs/text-n-code.html"
+    And I should not see '<a href="https://github.com/emailserver" class="user-mention">@emailserver</a>' in "_site/docs/text-n-code.html"
     But I should see 'test @codeUser test' in "_site/docs/text-n-code.html"
     And I should see '<p>user@emailserver.com</p>' in "_site/docs/text-n-code.html"
     And I should see 'quick <a href="https://github.com/brown-fox" class="user-mention">@brown-fox</a> jumped' in "_site/docs/underscores-n-dashes.html"
@@ -66,4 +66,10 @@ Feature: Mentions
     Then I should get a zero exit status
     And the "_site" directory should exist
     And I should not see '<p>test <a href="https://github.com/TestUser" class="user-mention">@TestUser</a> test</p>' in "_site/docs/text-n-code.html"
+    And I should not see '<a href="https://github.com/codeUser" class="user-mention">@codeUser</a> test</p>' in "_site/docs/text-n-code.html"
+    And I should not see '<a href="https://github.com/emailserver" class="user-mention">@emailserver</a>' in "_site/docs/text-n-code.html"
+    And I should not see '<a href="https://twitter.com/codeUser" class="user-mention">@codeUser</a> test</p>' in "_site/docs/text-n-code.html"
+    And I should not see '<a href="https://twitter.com/emailserver" class="user-mention">@emailserver</a>' in "_site/docs/text-n-code.html"
     But I should see '<p>test <a href="https://twitter.com/TestUser" class="user-mention">@TestUser</a> test</p>' in "_site/docs/text-n-code.html"
+    And I should see 'test @codeUser test' in "_site/docs/text-n-code.html"
+    And I should see '<p>user@emailserver.com</p>' in "_site/docs/text-n-code.html"
