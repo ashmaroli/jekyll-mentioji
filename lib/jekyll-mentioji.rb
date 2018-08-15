@@ -120,7 +120,8 @@ module Jekyll
 
       def emoji_url(name)
         File.join(
-          @transconfig["emoji_source"], "emoji", Emoji.find_by_alias(name).image_filename
+          @transconfig["emoji_source"], "emoji",
+          ::Emoji.find_by_alias(name).image_filename
         )
       end
 
