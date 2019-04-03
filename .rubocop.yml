@@ -4,11 +4,6 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 2.3
-  Include:
-    - Gemfile
-    - jekyll-mentioji.gemspec
-    - lib/**/*.rb
-    - features/**/*.rb
   Exclude:
     - benchmark/**/*
     - script/**/*

@@ -5,9 +5,9 @@ require "nokogiri"
 
 module Jekyll
   class Mentioji
-    MENTIONPATTERNS = %r~(?:^|\B)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i
+    MENTIONPATTERNS = %r~(?:^|\B)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i.freeze
 
-    OPENING_BODY_TAG_REGEX = %r!<body(.*?)>\s*!
+    OPENING_BODY_TAG_REGEX = %r!<body(.*?)>\s*!.freeze
 
     IGNORE_MENTION_PARENTS = %w(pre code a script style).freeze
     IGNORE_EMOJI_PARENTS = %w(pre code tt).freeze
@@ -16,6 +16,7 @@ module Jekyll
       def transform(doc)
         content = doc.output
         return unless content.include?("@") || content.include?(":")
+
         setup_transformer(doc.site.config)
         doc.output = if content.include?("<body")
                        process_html_body(content)
@@ -40,10 +41,12 @@ module Jekyll
 
       def process(body_content)
         return body_content unless body_content =~ prelim_check_regex
+
         parsed_body = Nokogiri::HTML::DocumentFragment.parse(body_content)
         parsed_body.search(".//text()").each do |node|
           content = node.text
           next if !content.include?("@") && !content.include?(":")
+
           node.replace(
             mention_renderer(
               node, emoji_renderer(node, content)
@@ -108,12 +111,14 @@ module Jekyll
       def mention_renderer(node, text)
         return text unless text.include?("@")
         return text if has_ancestor?(node, IGNORE_MENTION_PARENTS)
+
         text.gsub(MENTIONPATTERNS) { mention_markup(Regexp.last_match(1)) }
       end
 
       def emoji_renderer(node, text)
         return text unless text.include?(":")
         return text if has_ancestor?(node, IGNORE_EMOJI_PARENTS)
+
         text.gsub(emoji_pattern) { emoji_markup(Regexp.last_match(1)) }
       end
 
