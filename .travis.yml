@@ -10,6 +10,8 @@ rvm:
   - 2.3.8
 
 env:
+  - JEKYLL_VERSION="~> 3.8" PLUGINS=jekyll-mentioji
+  - JEKYLL_VERSION="~> 3.8" PLUGINS=jekyll-mentions:jemoji
   - PLUGINS=jekyll-mentioji
   - PLUGINS=jekyll-mentions:jemoji
 

@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.3.0"
 
   s.add_runtime_dependency "gemoji", "~> 3.0"
-  s.add_runtime_dependency "jekyll", "~> 3.5"
+  s.add_runtime_dependency "jekyll", ">= 3.5"
   s.add_runtime_dependency "nokogiri", "~> 1.4"
 
   s.add_development_dependency "cucumber", "~> 3.0"
