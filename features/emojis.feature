@@ -32,10 +32,10 @@ Feature: Emojis
     When I run jekyll build
     Then I should get a zero exit status
     And the "_site" directory should exist
-    And I should see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
+    And I should see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
     But I should not see '<img class="emoji" title=":sparkles:" alt=":sparkles:"' in "_site/docs/text-n-code.html"
     But I should see 'test :sparkles: test' in "_site/docs/text-n-code.html"
-    And I should see '<p>http<img class="emoji" title=":smiley:" alt=":smiley:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f603.png" height="20" width="20">feed</p>' in "_site/docs/text-n-code.html"
+    And I should see '<p>http<img class="emoji" title=":smiley:" alt=":smiley:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" height="20" width="20">feed</p>' in "_site/docs/text-n-code.html"
     And I should see '"alias": ":tada:"' in "_site/text.txt"
     And I should see '"alias" : ":tada:"' in "_site/text.json"
 
@@ -57,8 +57,8 @@ Feature: Emojis
     When I run jekyll build
     Then I should get a zero exit status
     And the "_site" directory should exist
-    And I should not see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
-    And I should not see '<img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png" height="20" width="20">' in "_site/docs/text-n-code.html"
+    And I should not see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
+    And I should not see '<img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20">' in "_site/docs/text-n-code.html"
     And I should not see '<img class="emoji" title=":sparkles:" alt=":sparkles:" src="/assets/images/emoji/emoji/unicode/2728.png" height="20" width="20">' in "_site/docs/text-n-code.html"
     But I should see '<p>test <img class="emoji" title=":tada:" alt=":tada:" src="/assets/images/emoji/emoji/unicode/1f389.png" height="20" width="20"> test</p>' in "_site/docs/text-n-code.html"
     And I should see 'test :sparkles: test' in "_site/docs/text-n-code.html"

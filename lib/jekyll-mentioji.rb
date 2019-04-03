@@ -92,7 +92,7 @@ module Jekyll
 
       def default_asset_root
         if ENV["ASSET_HOST_URL"].to_s.empty?
-          File.join("https://assets-cdn.github.com", "/images/icons")
+          File.join("https://github.githubassets.com", "/images/icons")
         else
           File.join(ENV["ASSET_HOST_URL"], "/images/icons")
         end
