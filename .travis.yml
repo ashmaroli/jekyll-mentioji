@@ -7,13 +7,13 @@ before_install:
 
 rvm:
   - 2.6.2
-  - 2.3.8
+  - 2.4.6
 
 env:
   - JEKYLL_VERSION="~> 3.8" PLUGINS=jekyll-mentioji
   - JEKYLL_VERSION="~> 3.8" PLUGINS=jekyll-mentions:jemoji
-  - PLUGINS=jekyll-mentioji
-  - PLUGINS=jekyll-mentions:jemoji
+  - JEKYLL_VERSION=">= 4.0.0.pre.alpha1" PLUGINS=jekyll-mentioji
+  - JEKYLL_VERSION=">= 4.0.0.pre.alpha1" PLUGINS=jekyll-mentions:jemoji
 
 script:
  - bundle exec cucumber
