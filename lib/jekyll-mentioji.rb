@@ -145,7 +145,7 @@ module Jekyll
       end
 
       def emoji_names
-        ::Emoji.all.flat_map(&:aliases).sort!.map! { |name| Regexp.escape(name) }
+        ::Emoji.all.flat_map(&:aliases).map! { |name| Regexp.escape(name) }
       end
 
       def emoji_pattern
