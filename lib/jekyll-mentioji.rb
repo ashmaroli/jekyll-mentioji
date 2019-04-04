@@ -131,23 +131,9 @@ module Jekyll
 
       def emoji_markup(name)
         emoji_stash[name] ||= begin
-          attrs = []
-          img_attrs(name).each do |key, value|
-            attrs << "#{key}='#{value}'"
-          end
-          "<img #{attrs.join(" ")}>"
+          "<img class='emoji' title=':#{name}:' alt=':#{name}:' " \
+          "src='#{emoji_url(name)}' height='20' width='20'>"
         end
-      end
-
-      def img_attrs(name)
-        {
-          "class"  => "emoji",
-          "title"  => ":#{name}:",
-          "alt"    => ":#{name}:",
-          "src"    => emoji_url(name).to_s,
-          "height" => "20",
-          "width"  => "20",
-        }
       end
 
       def mention_stash
