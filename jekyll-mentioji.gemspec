@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files       = all_files.select { |f| f.match(%r!^(lib|LICENSE|README\.md)!) }
   s.license     = "MIT"
 
-  s.required_ruby_version = ">= 2.3.0"
+  s.required_ruby_version = ">= 2.4.0"
 
   s.add_runtime_dependency "gemoji", "~> 3.0"
   s.add_runtime_dependency "jekyll", ">= 3.5"

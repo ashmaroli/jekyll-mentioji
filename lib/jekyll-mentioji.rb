@@ -15,7 +15,7 @@ module Jekyll
     class << self
       def transform(doc)
         content = doc.output
-        return unless content.include?("@") || content.include?(":")
+        return unless prelim_check_regex.match?(content)
 
         setup_transformer(doc.site.config)
         doc.output = if content.include?("<body")
@@ -40,12 +40,12 @@ module Jekyll
       end
 
       def process(body_content)
-        return body_content unless body_content =~ prelim_check_regex
+        return body_content unless prelim_check_regex.match?(body_content)
 
         parsed_body = Nokogiri::HTML::DocumentFragment.parse(body_content)
         parsed_body.search(".//text()").each do |node|
           content = node.text
-          next if !content.include?("@") && !content.include?(":")
+          next unless prelim_check_regex.match?(content)
 
           node.replace(
             mention_renderer(
