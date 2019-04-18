@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "jekyll-mentioji"
-  s.version     = "0.1.0"
+  s.version     = "0.2.0"
   s.authors     = ["Ashwin Maroli"]
   s.email       = ["ashmaroli@gmail.com"]
   s.homepage    = "https://github.com/ashmaroli/jekyll-mentioji"
