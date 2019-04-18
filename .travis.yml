@@ -16,5 +16,6 @@ env:
   - JEKYLL_VERSION=">= 4.0.0.pre.alpha1" PLUGINS=jekyll-mentions:jemoji
 
 script:
- - bundle exec cucumber
- - bundle exec rubocop
+  - bundle exec cucumber
+  - bundle exec rubocop
+  - benchmark/exec

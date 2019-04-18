@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ruby benchmark/setup.rb "$@"
+ruby benchmark/run.rb
+ruby benchmark/run.rb
