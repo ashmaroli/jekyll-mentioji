@@ -7,7 +7,7 @@ module Jekyll
   class Mentioji
     MENTIONPATTERNS = %r~(?:^|\B)@((?>[\w][\w-]*))(?!/)(?=\.+[ \t\W]|\.+$|[^\w.]|$)~i.freeze
 
-    BODY_CONTENT_REGEX = %r!(<body.*?>\s*)(.*?)</body>!m.freeze
+    OPENING_BODY_TAG_REGEX = %r!<body(.*?)>\s*!.freeze
 
     IGNORE_MENTION_PARENTS = %w(pre code a script style).freeze
     IGNORE_EMOJI_PARENTS = %w(pre code tt).freeze
@@ -19,7 +19,7 @@ module Jekyll
 
         setup_transformer(doc.site.config)
         doc.output = if content.include?("<body")
-                       process_html_body(content) if content.match?(BODY_CONTENT_REGEX)
+                       process_html_body(content)
                      else
                        process(content)
                      end
@@ -33,10 +33,10 @@ module Jekyll
       private
 
       def process_html_body(content)
-        content.gsub!(BODY_CONTENT_REGEX) do
-          Regexp.last_match(1) << process(Regexp.last_match(2)) << "</body>"
-        end
-        content
+        head, opener, tail  = content.partition(OPENING_BODY_TAG_REGEX)
+        body_content, *rest = tail.partition("</body>")
+
+        String.new(head) << opener << process(body_content) << rest.join
       end
 
       def process(body_content)
@@ -112,16 +112,14 @@ module Jekyll
         return text unless text.include?("@")
         return text if has_ancestor?(node, IGNORE_MENTION_PARENTS)
 
-        text.gsub!(MENTIONPATTERNS) { mention_markup(Regexp.last_match(1)) }
-        text
+        text.gsub(MENTIONPATTERNS) { mention_markup(Regexp.last_match(1)) }
       end
 
       def emoji_renderer(node, text)
         return text unless text.include?(":")
         return text if has_ancestor?(node, IGNORE_EMOJI_PARENTS)
 
-        text.gsub!(emoji_pattern) { emoji_markup(Regexp.last_match(1)) }
-        text
+        text.gsub(emoji_pattern) { emoji_markup(Regexp.last_match(1)) }
       end
 
       def emoji_url(name)
